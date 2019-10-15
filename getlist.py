@@ -15,14 +15,6 @@ vector = 'all'
 browser = 'all'
 interaction = 'no'
 p = '0'
-if len(sys.argv) > 1 : vector = sys.argv[1]
-if len(sys.argv) > 2 : browser = sys.argv[2]
-if len(sys.argv) > 3 : interaction = sys.argv[3]
-if len(sys.argv) > 4 : p = int(sys.argv[4])
-if vector not in vectors or browser not in browsers or interaction not in interactions: usage()
-if int(p) not in range(0,len(payloads)): usage()
-
-
 
 def usage():
         print "Usage: %s VECTOR BROWSER USER_ACTION? [POC_PAYLOAD]" % sys.argv[0]
@@ -64,10 +56,6 @@ def chooseCode(code):
 
 
 if __name__ == "__main__":
-    vector = 'all'
-    browser = 'all'
-    interaction = 'no'
-    p = '0'
     if len(sys.argv) > 1 : vector = sys.argv[1]
     if len(sys.argv) > 2 : browser = sys.argv[2]
     if len(sys.argv) > 3 : interaction = sys.argv[3]
