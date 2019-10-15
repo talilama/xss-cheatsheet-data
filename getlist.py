@@ -2,6 +2,7 @@
 
 import sys
 import json
+import random 
 
 #TODO add option for encoding of payloads
 #TODO add tag and event filters for events
@@ -10,6 +11,17 @@ vectors = ['events', 'protocols', 'all']
 browsers = ['edge','firefox','chrome','safari','all']
 interactions = ['yes','no','all']
 payloads = ['alert(1)', 'alert(random_integer)', 'confirm(random_integer)', 'prompt(random_integer)', 'console.log(random_integer)']
+vector = 'all'
+browser = 'all'
+interaction = 'no'
+p = '0'
+if len(sys.argv) > 1 : vector = sys.argv[1]
+if len(sys.argv) > 2 : browser = sys.argv[2]
+if len(sys.argv) > 3 : interaction = sys.argv[3]
+if len(sys.argv) > 4 : p = int(sys.argv[4])
+if vector not in vectors or browser not in browsers or interaction not in interactions: usage()
+if int(p) not in range(0,len(payloads)): usage()
+
 
 
 def usage():
@@ -28,7 +40,7 @@ def getProtocols():
         data = json.load(json_file)
     for tag in data:
         if browser in tag['browsers'] or browser == 'all':
-            print tag['code']
+            print chooseCode(tag['code'])
 
 def getEvents():
     f = "json/events.json"
@@ -46,8 +58,9 @@ def getEvents():
 
 def chooseCode(code):
     if int(p) == '0': return code
-    payload = payloads[int(p)]
-    return code
+    randint = random.randint(5,9999)
+    payload = payloads[int(p)].replace("random_integer",str(randint))
+    return code.replace("alert(1)",payload)
 
 
 if __name__ == "__main__":
