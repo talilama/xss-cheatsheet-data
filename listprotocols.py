@@ -3,10 +3,10 @@
 import sys
 import json
 
-# TODO: add functionality for additional payloads besides alert(1)
-poc_payloads = ['alert(1)', 'alert(random_integer)', 'confirm(random_integer)', 'prompt(random_integer)', 'console.log(random_integer)']
 
 browsers = ['edge','firefox','chrome','safari', 'all']
+# TODO: add functionality for additional payloads besides alert(1)
+poc_payloads = ['alert(1)', 'alert(random_integer)', 'confirm(random_integer)', 'prompt(random_integer)', 'console.log(random_integer)']
 
 def usage():
         print "Usage: %s BROWSER" % sys.argv[0]
